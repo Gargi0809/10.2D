@@ -1,16 +1,16 @@
 steps:
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/passing-task-387222/packer:1.7.8', '.' ]
+  args: [ 'build', '-t', 'gcr.io/passing-task-387222/packer:1.1.1', '.' ]
 #   push the container image 
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'push', '-t', 'gcr.io/passing-task-387222/packer:1.7.8', '.' ]
+  args: [ 'push', '-t', 'gcr.io/passing-task-387222/packer:1.1.1', '.' ]
 #   deploy the container image 
 - name: 'gcr.io/cloud-builders/gke-deploy'
   args: 
     - run
     - --filename=ops/deployment.yaml
-    - --iamge=gcr.io/passing-task-387222/packer:1.7.8
+    - --iamge=gcr.io/passing-task-387222/packer:1.1.1
     - --location=australia-southeast1
     - --cluster=cluster-2
   
