@@ -1,16 +1,6 @@
 steps:
-  # Build and deploy Docker Compose services
-  - name: "gcr.io/cloud-builders/docker-compose"
-    args: ["up", "-d"]
-    timeout: 1800s
-    dir: /workspace
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/passing-task-387222/packer@sha256:70f7e85e09130a466b1bf3c66dccd9ab7ad0699d9646abb7f5f8e2f3eb0a191a', '.' ]
 
-  # Run tests or perform additional checks
-  - name: "gcr.io/cloud-builders/docker-compose"
-    args: ["exec", "restaurantservice", "npm", "test"]
-    dir: /workspace
+images: [gcr.io/passing-task-387222/packer@sha256:70f7e85e09130a466b1bf3c66dccd9ab7ad0699d9646abb7f5f8e2f3eb0a191a]
 
-  # Push Docker Compose services to a registry
-  - name: "gcr.io/cloud-builders/docker-compose"
-    args: ["push"]
-    dir: /workspace
